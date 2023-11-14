@@ -10,6 +10,7 @@ from redis.asyncio import Redis
 from utils import mjson
 
 from .enums import Locale
+from .handlers import admin
 from .middlewares import (
     CommitMiddleware,
     DBSessionMiddleware,
@@ -30,6 +31,7 @@ def create_dispatcher() -> Dispatcher:
         redis=redis,
     )
     dp["settings"] = settings = Settings()
+    dp.include_routers(admin.router)
 
     dp.update.outer_middleware(DBSessionMiddleware(session_pool=create_pool(dsn=settings.dsn)))
     dp.update.outer_middleware(UserMiddleware())
