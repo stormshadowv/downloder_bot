@@ -25,6 +25,8 @@ class RetryRequestMiddleware(BaseRequestMiddleware):
     backoff_config: BackoffConfig
     max_retries: int
 
+    __slots__ = ("backoff_config", "max_retries")
+
     def __init__(
         self,
         backoff_config: BackoffConfig = DEFAULT_BACKOFF_CONFIG,
@@ -39,8 +41,8 @@ class RetryRequestMiddleware(BaseRequestMiddleware):
         bot: Bot,
         method: TelegramMethod[TelegramType],
     ) -> Response[TelegramType]:
-        backoff = Backoff(config=self.backoff_config)
-        retries = 0
+        backoff: Backoff = Backoff(config=self.backoff_config)
+        retries: int = 0
 
         while True:
             retries += 1
