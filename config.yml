@@ -1,6 +1,6 @@
 
-api_token: 42:ABC
-dsn: postgresql+asyncpg://user:password@localhost:5432/db_name
+api_token: 6115041302:AAEtbIOZ-kpAcqEATyMeBZpdDdaZekYhcXA
+dsn: postgresql+asyncpg://postgres:postgres@localhost:5432/db_name
 dev_id: 5945468457
 
 webhook:
